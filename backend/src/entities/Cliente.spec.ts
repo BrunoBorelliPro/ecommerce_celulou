@@ -138,7 +138,7 @@ describe("Testing the entity Cliente", () => {
                 emailCliente: "victor@gmail.com",
                 createdAt: new Date(Date.now()),
             })
-        }).toThrow("O tamanho mínimo para número de celualar deve ser de 10 caracteres");
+        }).toThrow("O tamanho mínimo para número de celular deve ser de 10 caracteres");
 
         // Testando um número de celular com mais de 12 caracteres
         expect(() => {
