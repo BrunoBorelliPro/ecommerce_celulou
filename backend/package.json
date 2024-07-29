@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "vitest",
+    "test": "dotenv -e .env.test -- vitest",
     "dev": "tsnd --transpile-only --respawn --ignore-watch node_modules src/server.ts",
     "start": "tsnd src/server.ts",
     "build": "rimraf ./dist && tsc",
