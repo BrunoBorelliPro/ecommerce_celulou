@@ -18,7 +18,7 @@ export class FindClienteController {
                 return response.status(200).json({ result: result })
             }
 
-            return response.status(404).json({ error: "Cliente não encontrado "})
+            return response.status(404).json({ error: "Cliente não encontrado"})
         } catch (error) {
             next(error);
         }
