@@ -1,4 +1,7 @@
 import { PrismaClient } from "@prisma/client";
+import { cpf } from "cpf-cnpj-validator";
+import { CreateClienteUC } from "../src/useCases/clientes/CreateCliente/CreateClienteUC";
+import { postgresClientesRepository } from "../src/repositories/implementations";
 
 async function resetDatabase(prisma: PrismaClient) {
     await prisma.$transaction([
@@ -16,4 +19,22 @@ async function resetDatabase(prisma: PrismaClient) {
     ]);
 }
 
-export { resetDatabase }
+function getClientJson() {
+    return {
+        codigoCliente: 1,
+        nomeCliente: "Victor Oliveira",
+        cpfCliente: cpf.generate(),
+        celularCliente: "11956365632",
+        emailCliente: "email@email.com"
+    }
+}
+
+async function getCliente(){
+    const {codigoCliente} = await new CreateClienteUC(postgresClientesRepository)
+    .execute(getClientJson())
+    const cliente = await postgresClientesRepository.getByCodigoCliente(codigoCliente)
+    return cliente
+
+}
+
+export { resetDatabase, getClientJson, getCliente }
